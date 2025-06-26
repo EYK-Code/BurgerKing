@@ -1,0 +1,560 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* Evrensel ayarlar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+}
+
+/* Ana Bölüm */
+.main {
+  position: relative;
+  min-height: 100vh;
+  /* Burger King renkleri: Ana koyu turuncu/kırmızı ve açık turuncu */
+  background: radial-gradient(#E46D23, #BD0F03); /* Daha doğal bir geçiş için turuncudan kırmızıya */
+  
+  /* Flexbox ile içeriği ve footer'ı düzenle */
+  display: flex;
+  flex-direction: column; /* Öğeleri dikeyde sırala */
+  justify-content: flex-start; /* İçeriği yukarıdan başlat */
+  
+  padding: 30px 100px;
+}
+
+/* Başlık Bölümü */
+header {
+  position: absolute; /* Header hala sayfanın en üstünde sabit kalabilir */
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.logo {
+  max-width: 90px;
+}
+
+/* Navigasyon Menüsü */
+.navigation {
+  display: flex;
+}
+
+.navigation li {
+  list-style: none;
+}
+
+.navigation li a {
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+  margin-left: 40px;
+}
+
+/* İçerik Alanı */
+.content {
+  position: relative;
+  width: 100%;
+  /* content flex-grow: 1 ile kalan alanı dolduracak */
+  flex-grow: 1; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; 
+  gap: 40px; 
+  /* Header'ın altından başlaması için üst boşluk */
+  margin-top: 100px; 
+  /* İçeriğin en altta footer ile çakışmaması için padding-bottom eklenebilir */
+  padding-bottom: 50px; /* Buton ve footer arası boşluk için */
+}
+
+/* Content .text bölümü - hem ana sayfa hem de diğerleri için varsayılan */
+.content .text {
+  width: 100%;
+  max-width: 600px; /* Anasayfa için varsayılan genişlik */
+  color: #fff; /* Genel metin rengi */
+}
+
+.content .text h2 {
+  color: #fff;
+  font-size: 5em;
+  font-weight: 300;
+}
+
+.content .text h2 span {
+  font-weight: 700;
+  color: #FFC72C; /* Burger King'in sarı rengi vurgu için */
+}
+
+.content .text p {
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.1em;
+  line-height: 1.5em;
+  margin: 20px 0;
+}
+
+/* Buton Stili */
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 20px 50px;
+  background: #FFC72C; 
+  color: #BD0F03; 
+  font-size: 1.1em;
+  font-weight: 500;
+  border-radius: 40px;
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.btn:hover {
+  letter-spacing: 2px;
+  background: #FFAA00; 
+}
+
+/* Slayt Gösterisi */
+.slider {
+  position: relative;
+  flex-grow: 1; 
+  min-width: 300px; 
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+
+.slider .slides {
+  display: none;
+}
+
+.slider .slides.active {
+  display: block;
+}
+
+.slider .slides img {
+  width: 100%;
+  max-width: 600px; 
+  display: block; 
+}
+
+/* Alt Bilgi */
+.footer {
+  /* position: relative yapıldı, absolute kaldırıldı */
+  position: relative; 
+  width: 100%;
+  display: flex;
+  padding: 30px 100px;
+  justify-content: space-between;
+  align-items: flex-end;
+  /* Flexbox'ta kendini en alta itmesini sağlar */
+  margin-top: auto; 
+  z-index: 10; 
+}
+
+.sci {
+  display: flex;
+}
+
+.sci li {
+  list-style: none;
+}
+
+.sci li a {
+  color: #fff;
+  font-size: 2em;
+  margin-right: 20px;
+  display: inline-block;
+  transition: 0.25s;
+}
+
+.sci li a:hover {
+  transform: translateY(-5px);
+  color: #FFC72C; 
+}
+
+/* İleri/Geri Düğmeleri */
+.prevNext {
+  position: relative;
+  user-select: none;
+}
+
+.prevNext p {
+  position: relative;
+  color: #fff;
+  text-align: end;
+  margin-bottom: 15px;
+}
+
+.prevNext p::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -35px;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 2px;
+  background: #fff;
+}
+
+.prevNext span {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #fff;
+  cursor: pointer;
+  font-size: 2em;
+  color: #fff;
+  transition: 0.25s;
+}
+
+.prevNext span:hover {
+  background: #FFC72C;
+  color: #BD0F03;
+  border-color: #FFC72C;
+}
+
+.prevNext span:nth-child(2) { 
+  margin-right: 20px;
+}
+
+/* ================================================= */
+/* =============== Menü Sayfasına Özel Stiller =============== */
+/* ================================================= */
+
+@media (min-width: 992px) { 
+    .content .text {
+        max-width: 900px; 
+        margin: 0 auto; 
+        text-align: center; 
+        padding: 0 20px; 
+    }
+}
+
+
+.content .text h2 {
+    font-size: 4.5em; 
+    margin-bottom: 20px;
+}
+
+.menu-categories {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.menu-category {
+    margin-bottom: 50px; 
+    padding: 20px; 
+    background: rgba(0, 0, 0, 0.2); 
+    border-radius: 15px;
+}
+
+.menu-category h3 {
+    color: #FFC72C; 
+    font-size: 2.8em; 
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3); 
+    padding-bottom: 15px;
+}
+
+.menu-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px; 
+    justify-content: center; 
+    align-items: stretch; 
+}
+
+.menu-item {
+    background: rgba(255, 255, 255, 0.1); 
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: space-between; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); 
+    transition: transform 0.3s ease, background 0.3s ease;
+    height: 100%; 
+}
+
+.menu-item:hover {
+    transform: translateY(-8px); 
+    background: rgba(255, 255, 255, 0.15); 
+}
+
+/* DÜZENLENDİ: Menüdeki ürün görselleri için daha tutarlı boyutlandırma */
+.menu-item-img {
+    max-width: 180px; 
+    height: 120px; /* Sabit bir yükseklik vererek dikey hizayı eşitle */
+    object-fit: contain; /* Görselin oranlarını bozmadan kutuya sığmasını sağlar */
+    border-radius: 8px; 
+    margin-bottom: 15px;
+    border: 2px solid #FFC72C; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.menu-item h4 {
+    font-size: 1.8em;
+    color: #FFC72C; 
+    margin-bottom: 10px;
+}
+
+.menu-item p {
+    font-size: 0.95em;
+    line-height: 1.5em;
+    color: #eee; 
+    margin-bottom: 0; 
+    flex-grow: 1; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+
+/* --- Duyarlı Tasarım --- */
+
+/* Medya Sorguları */
+@media (max-width: 991px) {
+    .main {
+        padding: 40px;
+    }
+    header {
+        padding: 20px 40px;
+    }
+    .logo {
+        max-width: 70px;
+    }
+    .content {
+        flex-direction: column;
+        margin: 120px 0 40px; 
+        gap: 20px; 
+    }
+    .content .text {
+        max-width: 100%;
+        text-align: center; 
+    }
+    .content .text h2 {
+        font-size: 4em;
+    }
+    .slider {
+        margin-top: 40px;
+    }
+    .slider .slides img {
+        width: 100%;
+        max-width: 420px;
+    }
+    .footer {
+        position: relative; 
+        padding: 0;
+    }
+
+    /* Navigasyonun Mobil Görünümü */
+    .navigation {
+        display: none;
+    }
+    .navigation.active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #BD0F03; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .navigation li a {
+        font-size: 1.5em;
+        margin: 10px 0;
+        display: inline-block;
+    }
+    .toggle {
+        position: relative;
+        width: 32px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100000;
+        cursor: pointer;
+    }
+    .toggle.active {
+        position: fixed;
+        right: 40px;
+    }
+    .toggle::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: #fff;
+        transform: translateY(-10px);
+        box-shadow: 0 10px 0 #fff;
+        transition: 0.25s;
+    }
+    .toggle.active::before {
+        transform: translateY(0px) rotate(45deg);
+        box-shadow: 0 0 0 #fff;
+    }
+    .toggle::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: #fff;
+        transform: translateY(10px);
+        transition: 0.25s;
+    }
+    .toggle.active::after {
+        transform: translateY(0px) rotate(-45deg);
+    }
+
+    /* Menü sayfası için mobil ayarlar */
+    .menu-category h3 {
+        font-size: 2.2em;
+    }
+    .menu-items-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+        gap: 20px;
+    }
+    .menu-item-img {
+        max-width: 160px;
+        height: 100px; /* Mobil için de görsel yüksekliğini ayarla */
+    }
+}
+
+@media (max-width: 480px) {
+    header,
+    .main {
+        padding: 20px;
+    }
+    .toggle.active {
+        right: 20px;
+    }
+    .content .text h2 {
+        font-size: 3em; 
+    }
+    .btn {
+        padding: 15px 30px;
+    }
+    .footer {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .sci {
+        margin-top: 40px;
+    }
+
+    /* Menü sayfası için çok küçük ekran ayarları */
+    .menu-category h3 {
+        font-size: 1.8em;
+    }
+    .menu-items-grid {
+        grid-template-columns: 1fr; 
+    }
+    .menu-item-img {
+        max-width: 140px;
+        height: 80px; /* Çok küçük ekranlar için görsel yüksekliğini ayarla */
+    }
+    .menu-item h4 {
+        font-size: 1.6em;
+    }
+    .menu-item p {
+        font-size: 0.9em;
+    }
+    .menu-category {
+        padding: 15px;
+    }
+}
+
+/* =============== İletişim Sayfası İçin Ek Stiller =============== */
+.contact-info, .contact-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 40px;
+    text-align: left; 
+    max-width: 600px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-info h3, .contact-form h3 {
+    color: #FFC72C;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.contact-info p {
+    color: #fff;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    line-height: 1.6em;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form input[type="text"]::placeholder,
+.contact-form input[type="email"]::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    border-color: #FFC72C;
+}
+
+.contact-form .btn {
+    width: 100%;
+    padding: 18px 0;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+}
+
+/* YENİ EKLENDİ: İletişim Formu Onay Mesajı Stili */
+.confirmation-message {
+    color: #4CAF50; /* Yeşil renk */
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    display: none; /* Başlangıçta gizli */
+    max-width: 600px; /* contact-form ile aynı genişlik */
+    margin-left: auto;
+    margin-right: auto;
+}
